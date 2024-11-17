@@ -1,5 +1,7 @@
+import hashlib
+
 class Empleado:
-    def __init__(self, id_empleado, nombre, rut, direccion, telefono, correo, fecha_inicio, rol_empleado_id, salario, contraseña, tipo_empleado_id, departamento_id):
+    def __init__(self, id_empleado=None, nombre="", rut="", direccion="", telefono="", correo="", fecha_inicio="", rol_empleado_id=None, salario=0.0, contraseña="", tipo_empleado_id=None, departamento_id=None):
         self.id_empleado = id_empleado
         self.nombre = nombre
         self.rut = rut
@@ -19,9 +21,9 @@ class Empleado:
 
     def encriptar_contraseña(self, contraseña):
         """Encripta la contraseña para almacenarla de manera segura."""
-        import hashlib
         return hashlib.sha256(contraseña.encode()).hexdigest()
 
     def asignar_departamento(self, departamento):
         """Asigna un departamento al empleado."""
-        self.departamento_id = departamento.id_departamento
+        if departamento and departamento.id_departamento:
+            self.departamento_id = departamento.id_departamento
